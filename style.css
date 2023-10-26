@@ -1,6 +1,9 @@
+body{
+    margin: 50px;
+}
 .userasendMGS{
     display: flex;
-    margin: auto;
+    margin: 0 50px 0 0 ;
     width: max-content;
     flex-direction: column;
 }
@@ -10,5 +13,47 @@
     padding: 10px;
 }
 .Msg{
-    font-size: 1.3rem
+    font-size: 1.3rem;
+}
+.cuble{
+    color: black;
+    background-color: black;
+    width: 2rem;
+    height: 1px;
+}
+.currentMSG{
+    border: 1px solid black;
+    padding: 10px;
+    margin: 10px;
+    width: auto;
+}
+.con-msg-cuble{
+    display: flex;
+    flex-direction: row;
+    width: max-content;
+    height: max-content;
+    padding: 10px;
+    
+}
+.items2{
+    margin: auto 10px auto 10px;
+    
+}
+.package{
+    background-color: burlywood;
+    width: 60px;
+    height: 60px;
+
+}
+.server{
+    background-color: darkgrey;
+    font-size: 1rem;
+    align-items: center;
+    text-align: center;
+}
+.container{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: min-content;
 }
