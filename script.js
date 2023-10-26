@@ -69,10 +69,16 @@ class Client {
         this.msgId = "msg" + id;
     }
     sendMsg() {
-        // const user = document.querySelector(".name").textContent;
-        // const msg = document.querySelector(".Msg").textContent;
-        // const receiver = document.getElementById("receiverName").textContent;
-        const msg = 'aasdasdasdsadasdasdasdasdasdas',user = 'user1',receiver = 'user2'
+        const user = document.querySelector(".name").textContent;
+        const msg = document.querySelector(".Msg").textContent;
+        let receiver = document.getElementById("receiverName").textContent;
+        for (let i = 0; i<server.users.length; i++) {
+            if (server.users[i]["name"] === receiver) {
+                receiver = server.users[i]["id"];
+                console.log('receiver: ', receiver);
+                return;
+            }
+        }
         const sendtoPackage= new MsgPackage(msg,user,receiver);
         for (let i=0; i<server.cables.length; i++){
             if(server.cables[i]['belongsTo'] === user){
@@ -95,20 +101,18 @@ class Client {
                     return;
             }
         }
-
-
-        
+       
     }
     receiveMsg(msg) {
         alert(msg['msg']);
-        // let fromWho = "";
-        // for (let i =0; i<server.users.length; i++) {
-        //     if (server.users[i]["id"] == msg["origin"]) {
-        //         fromWho = server.users[i]["name"];
-        //     }
-        // }
-        // const msgText = `msg from: ${fromWho}. \n ${msg["msg"]}`;
-        // document.getElementById(this.msgId).innerText = msgText;
+        let fromWho = "";
+        for (let i =0; i<server.users.length; i++) {
+            if (server.users[i]["id"] == msg["origin"]) {
+                fromWho = server.users[i]["name"];
+            }
+        }
+        const msgText = `msg from: ${fromWho}. \n ${msg["msg"]}`;
+        document.getElementById(this.msgId).innerText = msgText;
     }
 }
 

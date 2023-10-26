@@ -1,6 +1,6 @@
-body{
-    margin: 50px;
-}
+/* body{
+    margin: 50px; */
+/* } */
 .userasendMGS{
     display: flex;
     margin: 0 50px 0 0 ;
@@ -18,7 +18,7 @@ body{
 .cuble{
     color: black;
     background-color: black;
-    width: 110vh;    
+    width: 75vh;    
     height: 1px;
     margin: 10px; 
 
@@ -60,9 +60,19 @@ body{
     flex-direction: row;
     height: min-content;
     margin-left: auto;
+    margin-right: 5vh;
 
 }
 .severself{
     margin-left: auto;
 
+}
+
+#temp {
+    margin-left: auto;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    width: 10vh;
+    background-color: darkcyan;
 }
