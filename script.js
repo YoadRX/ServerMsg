@@ -68,9 +68,9 @@ class Client {
     constructor(id) {
         this.msgId = "msg" + id;
     }
-    sendMsg() {
-        const user = document.querySelector(".name").textContent;
-        const msg = document.querySelector(".Msg").textContent;
+    sendMsg(i) {
+        const user = document.querySelectorAll(".name")[i].textContent;
+        const msg = document.queryquerySelectorAll(".Msg")[i].textContent;
         let receiver = document.getElementById("receiverName").textContent;
         for (let i = 0; i<server.users.length; i++) {
             if (server.users[i]["name"] === receiver) {
