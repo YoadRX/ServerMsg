@@ -18,42 +18,51 @@ body{
 .cuble{
     color: black;
     background-color: black;
-    width: 2rem;
+    width: 110vh;    
     height: 1px;
+    margin: 10px; 
+
 }
 .currentMSG{
     border: 1px solid black;
-    padding: 10px;
-    margin: 10px;
     width: auto;
-}
+    height: max-content;
+
+    }
 .con-msg-cuble{
     display: flex;
     flex-direction: row;
     width: max-content;
     height: max-content;
-    padding: 10px;
+
     
 }
 .items2{
-    margin: auto 10px auto 10px;
     
 }
 .package{
     background-color: burlywood;
     width: 60px;
     height: 60px;
+    margin-top: -10px;
 
 }
 .server{
     background-color: darkgrey;
     font-size: 1rem;
-    align-items: center;
     text-align: center;
+    width: 100px;
+    height: 500px;
+    
 }
 .container{
     display: flex;
     flex-direction: row;
-    width: 100%;
     height: min-content;
+    margin-left: auto;
+
+}
+.severself{
+    margin-left: auto;
+
 }
