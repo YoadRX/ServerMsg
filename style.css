@@ -1,0 +1,14 @@
+.userasendMGS{
+    display: flex;
+    margin: auto;
+    width: max-content;
+    flex-direction: column;
+}
+.items{
+    border: 1px solid black;
+    margin: 2px;
+    padding: 10px;
+}
+.Msg{
+    font-size: 1.3rem
+}
