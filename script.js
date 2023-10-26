@@ -47,8 +47,9 @@ class Cable {
     }
     sendToUser() {
         for (let i = 0; i < server.users.length; i++) {
-            if (server.users["id"] === this.id) {
-                server.users["client"].receiveMsg(this.currentPack);
+            if (server.users[i]["id"] == this.id) {
+                console.log(server.users[i]);
+                server.users[i]["client"].receiveMsg(this.currentPack);
                 this.currentPack = false;
                 console.log("passed to user client");
                 return;
@@ -57,18 +58,28 @@ class Cable {
     }
     sendToServer() {
         server.receivedPackages.push(this.currentPack);
+        this.currentPack = false;
         server.sendPackages();
         console.log("passed to server");
     }
 }
 
 class Client {
-    constructor() { }
+    constructor(id) {
+        this.msgId = "msg" + id;
+    }
     sendMsg() {
-
+        
     }
     receiveMsg(msg) {
-        alert(msg);
+        let fromWho = "";
+        for (let i =0; i<server.users.length; i++) {
+            if (server.users[i]["id"] == msg["origin"]) {
+                fromWho = server.users[i]["name"];
+            }
+        }
+        const msgText = `msg from: ${fromWho}. \n ${msg["msg"]}`;
+        document.getElementById(this.msgId).innerText = msgText;
     }
 }
 
@@ -95,7 +106,7 @@ const holderUsers = {
     buildUser: function (name, id) {
         this.name = name
         this.id = id
-        this.Client = new Client();
+        this.client = new Client(id);
         server.cables.push(new Cable(id));
     },
 }
