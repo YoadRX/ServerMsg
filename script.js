@@ -1,5 +1,4 @@
 const localUsers = localStorage.getItem('users');
-
 const server = {
     users: localUsers,
     cables: [],
@@ -41,9 +40,10 @@ const server = {
 }
 
 class Cable {
-    constructor(userId) {
+    constructor(userId,name) {
         this.id = userId;
         this.currentPack = false;
+        this.belongsTo = name;
     }
     sendToUser() {
         for (let i = 0; i < server.users.length; i++) {
@@ -69,17 +69,46 @@ class Client {
         this.msgId = "msg" + id;
     }
     sendMsg() {
+        // const user = document.querySelector(".name").textContent;
+        // const msg = document.querySelector(".Msg").textContent;
+        // const receiver = document.getElementById("receiverName").textContent;
+        const msg = 'aasdasdasdsadasdasdasdasdasdas',user = 'user1',receiver = 'user2'
+        const sendtoPackage= new MsgPackage(msg,user,receiver);
+        for (let i=0; i<server.cables.length; i++){
+            if(server.cables[i]['belongsTo'] === user){
+                    let sent = false;
+                    const sendHelper = () => {
+                        if (!server.cables[i]["currentPack"]) {
+                            server.cables[i]["currentPack"] = sendtoPackage;
+                            server.cables[i].sendToServer();
+                            sent = true;
+                        }
+                    }
+                    while (!sent) {
+                        if (server.cables[i]["currentPack"]) {
+                            setTimeout(sendHelper, 3000);
+                        }
+                        else {
+                            sendHelper();
+                        }
+                    }
+                    return;
+            }
+        }
+
+
         
     }
     receiveMsg(msg) {
-        let fromWho = "";
-        for (let i =0; i<server.users.length; i++) {
-            if (server.users[i]["id"] == msg["origin"]) {
-                fromWho = server.users[i]["name"];
-            }
-        }
-        const msgText = `msg from: ${fromWho}. \n ${msg["msg"]}`;
-        document.getElementById(this.msgId).innerText = msgText;
+        alert(msg['msg']);
+        // let fromWho = "";
+        // for (let i =0; i<server.users.length; i++) {
+        //     if (server.users[i]["id"] == msg["origin"]) {
+        //         fromWho = server.users[i]["name"];
+        //     }
+        // }
+        // const msgText = `msg from: ${fromWho}. \n ${msg["msg"]}`;
+        // document.getElementById(this.msgId).innerText = msgText;
     }
 }
 
@@ -107,7 +136,7 @@ const holderUsers = {
         this.name = name
         this.id = id
         this.client = new Client(id);
-        server.cables.push(new Cable(id));
+        server.cables.push(new Cable(id,name));
     },
 }
 
